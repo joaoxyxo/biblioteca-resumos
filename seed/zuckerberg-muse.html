@@ -1,0 +1,224 @@
+<title>Muse e a Aposta da Meta</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Mesmo esquema das páginas anteriores: cabeçalho com equação, colunas antes/depois, diagrama, caixas, cartões, passos */
+:root{
+  --bg:#f7f4ee; --surface:#ffffff; --ink:#1d1b18; --muted:#6b655c; --line:#e4ddd0;
+  --accent:#c2502b; --accent-soft:#f6e3d9; --blue:#2f5d8a; --blue-soft:#e1ebf5;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16140f; --surface:#211e18; --ink:#f1ece2; --muted:#a59d90; --line:#3a352c;
+    --accent:#e57a52; --accent-soft:#3b261c; --blue:#7fa9d4; --blue-soft:#1d2a38; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16140f; --surface:#211e18; --ink:#f1ece2; --muted:#a59d90; --line:#3a352c;
+  --accent:#e57a52; --accent-soft:#3b261c; --blue:#7fa9d4; --blue-soft:#1d2a38; color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:900px;margin:0 auto;padding-block:48px 64px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;text-wrap:balance}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+header h1{font-size:clamp(32px,5.5vw,52px);margin:10px 0 12px}
+.lede{font-size:18px;color:var(--muted);max-width:640px}
+
+.equation{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:28px 0 0}
+.chip{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;flex:1 1 150px;min-width:0}
+.chip b{display:block;font-family:Fraunces,serif;font-size:21px}
+.chip span{font-size:14px;color:var(--muted)}
+.chip.a b{color:var(--accent)} .chip.b b{color:var(--blue)}
+.chip.c{background:var(--ink);border-color:var(--ink)} .chip.c b,.chip.c span{color:var(--bg)} .chip.c span{opacity:.75}
+.op{font-family:Fraunces,serif;font-size:28px;color:var(--muted)}
+
+section{margin-top:52px}
+section > h2{font-size:28px;margin-bottom:6px}
+.sub{color:var(--muted);margin-bottom:20px;max-width:640px}
+
+.shift{display:grid;grid-template-columns:1fr auto 1fr;gap:14px}
+.shift .col{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
+.shift h3{font-size:19px;margin-bottom:8px}
+.shift .old h3{color:var(--muted)} .shift .new h3{color:var(--blue)}
+.shift ul{list-style:none}
+.shift li{padding:6px 0;border-top:1px dashed var(--line);font-size:15px}
+.shift li:first-child{border-top:0}
+.arrow{align-self:center;font-size:30px;color:var(--accent)}
+
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.trio .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.trio .big{font-family:Fraunces,serif;font-size:30px;line-height:1.1;color:var(--blue);font-variant-numeric:tabular-nums}
+.trio .box.risk .big{color:var(--accent)}
+.trio h3{font-size:18px;margin:8px 0 4px}
+.trio p{font-size:15px;color:var(--muted)}
+.note{margin-top:12px;font-size:15px;color:var(--muted)}
+.note b{color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card .tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.card h3{font-size:18px;margin:4px 0 6px}
+.card p{font-size:15px;color:var(--muted)}
+
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;overflow-x:auto}
+.diagram svg{width:100%;min-width:560px;height:auto;display:block}
+.diagram text{font-family:Inter,sans-serif}
+
+blockquote{margin-top:52px;padding:24px 26px;border-left:4px solid var(--accent);background:var(--surface);border-radius:0 14px 14px 0;font-family:Fraunces,serif;font-size:clamp(19px,2.8vw,24px);line-height:1.35}
+
+.debate{background:var(--blue-soft);border-radius:16px;padding:20px 22px}
+.debate h3{font-size:19px;margin-bottom:8px;color:var(--blue)}
+.debate ul{list-style:none;display:grid;gap:8px}
+.debate li{font-size:15px;padding-left:18px;position:relative}
+.debate li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+
+.poker{margin-top:52px;display:flex;gap:16px;align-items:flex-start;border:1px dashed var(--accent);border-radius:16px;padding:20px 22px}
+.poker .icon{font-size:26px;line-height:1;color:var(--accent)}
+.poker h3{font-size:19px;margin-bottom:4px}
+.poker p{font-size:15px;color:var(--muted)}
+
+.steps{display:grid;gap:10px;counter-reset:s}
+.step{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:15px}
+.step::before{content:counter(s);font-family:Fraunces,serif;font-size:18px;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.step b{display:block;font-size:16px}
+.step span{color:var(--muted)}
+
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--blue)}
+@media (max-width:640px){
+  .shift{grid-template-columns:1fr} .arrow{transform:rotate(90deg);justify-self:center}
+  .op{width:100%;text-align:center}
+  .trio{grid-template-columns:1fr}
+}
+</style>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Podcast · Cheeky Pint · Mark Zuckerberg e Alexandr Wang</div>
+  <h1>Muse, Superinteligência e a Aposta de 100 Mil Milhões</h1>
+  <p class="lede">Numa conversa com John Collison, da Stripe, o CEO da Meta e o seu Chief AI Officer explicam como reconstruíram a equipa de IA do zero, porque se comprometeram com centenas de milhares de milhões antes de saberem se o modelo funcionava, e para onde querem levar o Muse: um agente pessoal para milhares de milhões de pessoas.</p>
+  <div class="equation">
+    <div class="chip a"><b>Computação</b><span>Clusters de vários gigawatts</span></div>
+    <div class="op">×</div>
+    <div class="chip b"><b>Densidade de talento</b><span>Cerca de 100 a 200 investigadores de topo</span></div>
+    <div class="op">×</div>
+    <div class="chip a"><b>Distribuição</b><span>Milhares de milhões de utilizadores</span></div>
+    <div class="op">=</div>
+    <div class="chip c"><b>Agente pessoal</b><span>"Uma equipa de especialistas do teu lado"</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>A mudança de perspetiva</h2>
+  <p class="sub">Depois de o Llama 4 ter ficado aquém, a Meta mudou a forma de pensar o produto e a equipa.</p>
+  <div class="shift">
+    <div class="col old">
+      <h3>O modelo antigo</h3>
+      <ul>
+        <li>O modelo é um componente; o produto é a app</li>
+        <li>Seletores de modelo e de esforço</li>
+        <li>Equipas grandes, computação repartida</li>
+        <li>Memória como funcionalidade à volta do modelo</li>
+        <li>A IA serve para automatizar trabalho</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="col new">
+      <h3>A visão do Muse</h3>
+      <ul>
+        <li>"O modelo é o produto"</li>
+        <li>Sem seletores: simplicidade deliberada</li>
+        <li>Equipa pequena e densa, computação concentrada</li>
+        <li>Memória ativa treinada no próprio modelo</li>
+        <li>O maior valor está em inventar e criar</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note"><b>Para Wang:</b> num produto nativo de IA, as decisões de produto passam a ser decisões de modelo: que dados usar, como treinar e como avaliar.</p>
+</section>
+
+<section>
+  <h2>Como se constrói um modelo de fronteira</h2>
+  <p class="sub">A explicação de Wang, em três fases. A equipa gastou grande parte da computação no pré-treino e fala de "vales de tristeza" pelo caminho.</p>
+  <div class="diagram">
+    <svg viewBox="0 0 900 210" role="img" aria-label="Pré-treino com dados massivos, afinação supervisionada que instala comportamentos, aprendizagem por reforço que os amplifica">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+      </defs>
+      <rect x="0" y="30" width="260" height="110" rx="16" fill="var(--blue-soft)"/>
+      <rect x="320" y="30" width="260" height="110" rx="16" fill="var(--accent-soft)"/>
+      <rect x="640" y="30" width="260" height="110" rx="16" fill="var(--ink)"/>
+      <g font-size="17" font-weight="600" text-anchor="middle">
+        <text x="130" y="66" fill="var(--blue)">1 · Pré-treino</text>
+        <text x="450" y="66" fill="var(--accent)">2 · Afinação supervisionada</text>
+        <text x="770" y="66" fill="var(--bg)">3 · Aprendizagem por reforço</text>
+      </g>
+      <g font-size="13" text-anchor="middle">
+        <text x="130" y="94" fill="var(--muted)">Texto, imagem, áudio e vídeo,</text>
+        <text x="130" y="114" fill="var(--muted)">mais dados próprios da Meta</text>
+        <text x="450" y="94" fill="var(--muted)">Instala comportamentos, que no</text>
+        <text x="450" y="114" fill="var(--muted)">início só aparecem ~10% das vezes</text>
+        <text x="770" y="94" fill="var(--bg)" opacity=".8">Amplifica esses comportamentos;</text>
+        <text x="770" y="114" fill="var(--bg)" opacity=".8">o desenho dos ambientes é crucial</text>
+      </g>
+      <g stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)">
+        <line x1="264" y1="85" x2="316" y2="85"/>
+        <line x1="584" y1="85" x2="636" y2="85"/>
+      </g>
+      <text x="450" y="186" font-size="14" fill="var(--muted)" text-anchor="middle">Os dados disponíveis limitam a escala do pré-treino. Na aprendizagem por reforço, menos dados bem escolhidos podem render mais.</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <h2>A aposta em números</h2>
+  <p class="sub">No final de 2025, a liderança discutiu um compromisso de 100 a 200 mil milhões de dólares sem ter ainda visto os modelos. A CFO, Susan Li, avisou que, se falhasse, ia ser "muito, muito mau".</p>
+  <div class="trio">
+    <div class="box"><div class="big">$50–60 mil M</div><h3>Construir 1 gigawatt</h3><p>Investimento estimado por Zuckerberg num cluster dessa escala. O de Hyperion, no Luisiana, vai até 5 gigawatts.</p></div>
+    <div class="box"><div class="big">~$15 mil M/ano</div><h3>Operar 1 gigawatt</h3><p>Custo anual de pôr o cluster a funcionar. Um modelo de fronteira custa "dezenas de milhares de milhões", e a investigação duplica a fatura.</p></div>
+    <div class="box risk"><div class="big">$100–200 mil M</div><h3>O compromisso</h3><p>A rede de segurança: se a IA tiver sucesso em geral, haverá quem queira comprar a computação que sobrar.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>As ideias-chave</h2>
+  <div class="grid">
+    <div class="card"><div class="tag">Uso real</div><h3>Toda a gente vai programar sem dar por isso</h3><p>Zuckerberg usa o Muse como treinador de MMA: as câmaras do ginásio enviam vídeo e o agente monta o seu próprio sistema para dar feedback no minuto de pausa entre rondas.</p></div>
+    <div class="card"><div class="tag">Muse Wonder</div><h3>Memória e persistência</h3><p>Lembra-se do que dizes ao longo de semanas e insiste em tarefas longas e ambíguas, procurando alternativas quando algo falha. Forte em direito, finanças, medicina e código.</p></div>
+    <div class="card"><div class="tag">Discrição</div><h3>Usar o contexto, revelar pouco</h3><p>O agente deve saber muito sobre ti, mas contar o mínimo: reservar um restaurante sem revelar uma condição de saúde, por exemplo.</p></div>
+    <div class="card"><div class="tag">Comércio</div><h3>Agentes que compram por ti</h3><p>Já há quem delegue compras com restrições como "até quarta-feira". Para Zuckerberg, empresas que bloquearem agentes estão a fazer uma má escolha estratégica.</p></div>
+    <div class="card"><div class="tag">Hardware</div><h3>Para lá do telemóvel</h3><p>Os óculos podem tornar-se um aparelho que vê e ouve o que tu vês e ouves, talvez sem loja de apps, com interfaces geradas no momento.</p></div>
+    <div class="card"><div class="tag">Mercado</div><h3>Não vai ser um só vencedor</h3><p>Prevê um punhado de empresas na fronteira, como na internet. A Meta aposta na via pessoal, enquanto outras se focam em automatizar trabalho de escritório.</p></div>
+  </div>
+</section>
+
+<blockquote>"O modelo é o produto." Num produto de IA, decidir o que ele faz é decidir como o treinas.</blockquote>
+
+<section>
+  <h2>Para aplicar</h2>
+  <div class="steps">
+    <div class="step"><div><b>Densidade antes de quantidade</b><span>A MSL foi reconstruída com poucas pessoas muito boas e recursos concentrados nelas, em vez de equipas grandes com recursos espalhados.</span></div></div>
+    <div class="step"><div><b>Esconde a complexidade</b><span>Sem seletores nem nomes confusos. O utilizador não deve ter de escolher a ferramenta: o produto escolhe por ele.</span></div></div>
+    <div class="step"><div><b>Cria as tuas próprias medições</b><span>Wang desconfia de benchmarks públicos e mede o que importa para o produto, como a diferença entre tarefas conhecidas e tarefas novas.</span></div></div>
+    <div class="step"><div><b>Prepara-te para os agentes</b><span>Se tens um serviço online, pensa em como um agente de IA o vai usar: APIs abertas valem mais do que barreiras.</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Pontos em discussão</h2>
+  <p class="sub">É uma conversa com os próprios responsáveis no dia do lançamento do produto. Convém ler com isso em mente.</p>
+  <div class="debate">
+    <h3>O que dizem os céticos</h3>
+    <ul>
+      <li>Críticos descreveram a entrevista como pouco exigente. A pergunta mais dura foi de Collison, sobre Wang nunca ter treinado um modelo de fronteira antes de assumir o cargo.</li>
+      <li>Os resultados nos benchmarks e as capacidades do Muse Wonder são afirmações da Meta, ainda por confirmar de forma independente.</li>
+      <li>Um agente que sabe tudo sobre ti levanta questões de privacidade, sobretudo numa empresa que vive de publicidade.</li>
+      <li>Investimentos desta escala só se pagam se a procura por IA continuar a crescer ao ritmo que a Meta espera.</li>
+    </ul>
+  </div>
+</section>
+
+
+<footer>Baseado no episódio do Cheeky Pint com Mark Zuckerberg e Alexandr Wang (outubro de 2026), na transcrição publicada no Substack do programa e em comentários publicados sobre o episódio. Os números são os citados pelos convidados. <a href="https://www.youtube.com/watch?v=XfdIhd1g6EI">Ver no YouTube</a></footer>
+</div>

@@ -1,0 +1,196 @@
+<title>Paddy Galloway e a Atenção</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Mesmo esquema da página da Mafalda: cabeçalho com equação, colunas antes/depois, cartões, diagrama, passos */
+:root{
+  --bg:#f7f4ee; --surface:#ffffff; --ink:#1d1b18; --muted:#6b655c; --line:#e4ddd0;
+  --accent:#c2502b; --accent-soft:#f6e3d9; --blue:#2f5d8a; --blue-soft:#e1ebf5;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16140f; --surface:#211e18; --ink:#f1ece2; --muted:#a59d90; --line:#3a352c;
+    --accent:#e57a52; --accent-soft:#3b261c; --blue:#7fa9d4; --blue-soft:#1d2a38; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16140f; --surface:#211e18; --ink:#f1ece2; --muted:#a59d90; --line:#3a352c;
+  --accent:#e57a52; --accent-soft:#3b261c; --blue:#7fa9d4; --blue-soft:#1d2a38; color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:900px;margin:0 auto;padding-block:48px 64px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;text-wrap:balance}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+header h1{font-size:clamp(32px,5.5vw,52px);margin:10px 0 12px}
+.lede{font-size:18px;color:var(--muted);max-width:640px}
+
+.equation{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:28px 0 0}
+.chip{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;flex:1 1 150px;min-width:0}
+.chip b{display:block;font-family:Fraunces,serif;font-size:21px}
+.chip span{font-size:14px;color:var(--muted)}
+.chip.a b{color:var(--accent)} .chip.b b{color:var(--blue)}
+.chip.c{background:var(--ink);border-color:var(--ink)} .chip.c b,.chip.c span{color:var(--bg)} .chip.c span{opacity:.75}
+.op{font-family:Fraunces,serif;font-size:28px;color:var(--muted)}
+
+section{margin-top:52px}
+section > h2{font-size:28px;margin-bottom:6px}
+.sub{color:var(--muted);margin-bottom:20px;max-width:640px}
+
+.shift{display:grid;grid-template-columns:1fr auto 1fr;gap:14px}
+.shift .col{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
+.shift h3{font-size:19px;margin-bottom:8px}
+.shift .old h3{color:var(--muted)} .shift .new h3{color:var(--blue)}
+.shift ul{list-style:none}
+.shift li{padding:6px 0;border-top:1px dashed var(--line);font-size:15px}
+.shift li:first-child{border-top:0}
+.arrow{align-self:center;font-size:30px;color:var(--accent)}
+
+.ccn{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ccn .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.ccn .letter{font-family:Fraunces,serif;font-size:40px;line-height:1;color:var(--blue)}
+.ccn h3{font-size:18px;margin:6px 0 4px}
+.ccn p{font-size:15px;color:var(--muted)}
+.ccn-note{margin-top:12px;font-size:15px;color:var(--muted)}
+.ccn-note b{color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card .tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.card h3{font-size:18px;margin:4px 0 6px}
+.card p{font-size:15px;color:var(--muted)}
+
+.funnel{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;overflow-x:auto}
+.funnel svg{width:100%;min-width:520px;height:auto;display:block}
+.funnel text{font-family:Inter,sans-serif}
+
+blockquote{margin-top:52px;padding:24px 26px;border-left:4px solid var(--accent);background:var(--surface);border-radius:0 14px 14px 0;font-family:Fraunces,serif;font-size:clamp(19px,2.8vw,24px);line-height:1.35}
+
+.poker{margin-top:52px;display:flex;gap:16px;align-items:flex-start;border:1px dashed var(--accent);border-radius:16px;padding:20px 22px}
+.poker .icon{font-size:26px;line-height:1;color:var(--accent)}
+.poker h3{font-size:19px;margin-bottom:4px}
+.poker p{font-size:15px;color:var(--muted)}
+
+.steps{display:grid;gap:10px;counter-reset:s}
+.step{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:15px}
+.step::before{content:counter(s);font-family:Fraunces,serif;font-size:18px;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.step b{display:block;font-size:16px}
+.step span{color:var(--muted)}
+
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--blue)}
+@media (max-width:640px){
+  .shift{grid-template-columns:1fr} .arrow{transform:rotate(90deg);justify-self:center}
+  .op{width:100%;text-align:center}
+  .ccn{grid-template-columns:1fr}
+}
+</style>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Podcast · Open Residency · Paddy Galloway</div>
+  <h1>Ideias, Embalagem e a Economia da Atenção</h1>
+  <p class="lede">O estratega por trás de vídeos da Red Bull, do MrBeast e dos Philadelphia Eagles defende que o teto de um vídeo é decidido antes de se carregar no REC. A produção conta, mas a ideia e a forma como é apresentada contam muito mais.</p>
+  <div class="equation">
+    <div class="chip a"><b>Ideia</b><span>Define o máximo de views possível</span></div>
+    <div class="op">×</div>
+    <div class="chip b"><b>Embalagem</b><span>Título + thumbnail: o clique</span></div>
+    <div class="op">×</div>
+    <div class="chip a"><b>Retenção</b><span>Intro, ritmo e stakes: o visionamento</span></div>
+    <div class="op">=</div>
+    <div class="chip c"><b>Alcance</b><span>Atenção que se acumula</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>A mudança de perspetiva</h2>
+  <p class="sub">A maioria dos criadores e marcas gasta quase todo o tempo a filmar e editar. Paddy inverte a ordem: primeiro a ideia e a embalagem, depois a produção.</p>
+  <div class="shift">
+    <div class="col old">
+      <h3>Como a maioria faz</h3>
+      <ul>
+        <li>Avançar com a primeira ideia</li>
+        <li>Filmar primeiro, pensar no thumbnail no fim</li>
+        <li>Um título, um thumbnail, publicar</li>
+        <li>Falar só para o nicho que já te segue</li>
+        <li>Mais qualidade de produção = mais views</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="col new">
+      <h3>Visão de Paddy</h3>
+      <ul>
+        <li>100 ideias para fazer 1 vídeo</li>
+        <li>A embalagem nasce com a ideia</li>
+        <li>Dez títulos e três thumbnails por vídeo</li>
+        <li>Servir o núcleo, o casual e o novo ao mesmo tempo</li>
+        <li>Oscilar entre qualidade e embalagem, sem descurar nenhuma</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>O filtro CCN</h2>
+  <p class="sub">O primeiro traço que Paddy procura num vídeo viral dentro de um nicho: tem de funcionar para os três tipos de espectador ao mesmo tempo.</p>
+  <div class="ccn">
+    <div class="box"><div class="letter">C</div><h3>Core</h3><p>Os fãs do nicho. Veem tudo e querem profundidade e detalhe.</p></div>
+    <div class="box"><div class="letter">C</div><h3>Casual</h3><p>Já viram um ou dois vídeos. Entram e saem conforme o tema lhes interessa.</p></div>
+    <div class="box"><div class="letter">N</div><h3>New</h3><p>Nunca ouviram falar de ti. Precisam de perceber o vídeo sem contexto prévio.</p></div>
+  </div>
+  <p class="ccn-note"><b>Porque importa:</b> os canais estagnam quando só acertam num ou dois grupos. Um criador de permacultura chegou a mais de 15 milhões de views ao encontrar um tema do seu nicho com apelo largo.</p>
+</section>
+
+<section>
+  <h2>As ideias-chave</h2>
+  <div class="grid">
+    <div class="card"><div class="tag">Atenção</div><h3>Os outros fossos estão a desaparecer</h3><p>Com produtos cada vez mais fáceis de copiar, a próxima década favorece quem controla a atenção. O YouTube já compete diretamente com a Netflix e a Disney.</p></div>
+    <div class="card"><div class="tag">Ideia</div><h3>A ideia limita as views antes de filmar</h3><p>Nenhuma edição salva uma ideia com teto baixo. Uma ideia ótima pode render muitas vezes mais do que uma apenas boa.</p></div>
+    <div class="card"><div class="tag">Embalagem</div><h3>Pequenas melhorias, efeitos enormes</h3><p>Um thumbnail cerca de 20% melhor pode multiplicar as views diárias por 40. Na Red Bull, cada vídeo chega a ter 50 thumbnails testados.</p></div>
+    <div class="card"><div class="tag">Embalagem</div><h3>O thumbnail é psicologia</h3><p>Conta mais a razão para clicar do que o design. Simplificar e exagerar ligeiramente, sem cair no clickbait, com poucas palavras no ecrã.</p></div>
+    <div class="card"><div class="tag">Retenção</div><h3>Histórias precisam de stakes</h3><p>Sem algo em jogo, o storytelling não segura ninguém. A intro tem de confirmar a promessa do clique e dar razões para ficar.</p></div>
+    <div class="card"><div class="tag">Estratégia</div><h3>Só começa o que consegues manter</h3><p>A maioria dos canais de marca falha por falta de consistência. O algoritmo segue o público, por isso o que conta é o que as pessoas realmente veem.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>O funil 100 → 1</h2>
+  <p class="sub">Força-te a gerar 100 ideias (a maioria será fraca), elimina as que falham o CCN, fica com 10 fortes e desenvolve 1. Assim nunca avanças com uma ideia medíocre só por ter sido a primeira.</p>
+  <div class="funnel">
+    <svg viewBox="0 0 900 300" role="img" aria-label="Funil de ideias: 100 ideias, cerca de 60 após o filtro CCN, 10 fortes, 1 vídeo">
+      <g font-size="15" fill="var(--ink)">
+        <text x="0" y="50">Brainstorm</text>
+        <text x="0" y="120">Filtro CCN</text>
+        <text x="0" y="190">Shortlist</text>
+        <text x="0" y="260">Produção</text>
+      </g>
+      <rect x="160" y="26" width="640" height="38" rx="8" fill="var(--accent-soft)"/>
+      <rect x="160" y="96" width="384" height="38" rx="8" fill="var(--blue-soft)"/>
+      <rect x="160" y="166" width="64" height="38" rx="8" fill="var(--blue)"/>
+      <rect x="160" y="236" width="10" height="38" rx="3" fill="var(--accent)"/>
+      <g font-size="16" font-weight="600">
+        <text x="814" y="51" fill="var(--accent)">100 ideias</text>
+        <text x="558" y="121" fill="var(--blue)">~60 sobrevivem</text>
+        <text x="238" y="191" fill="var(--blue)">10 fortes</text>
+        <text x="184" y="261" fill="var(--accent)">1 vídeo, com 10 títulos e 3 thumbnails</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<blockquote>Antes de perguntares como fazer o vídeo melhor, pergunta se a ideia merece ser feita e se alguém vai querer clicar nela.</blockquote>
+
+<section>
+  <h2>Para aplicar</h2>
+  <div class="steps">
+    <div class="step"><div><b>Muda onde gastas o tempo</b><span>Passa horas da edição para a ideação e a embalagem. É aí que está a alavanca.</span></div></div>
+    <div class="step"><div><b>Gera 100, faz 1</b><span>Brainstorm semanal, filtro CCN, shortlist de 10 e só depois escolhe o vídeo.</span></div></div>
+    <div class="step"><div><b>Embala antes de filmar</b><span>Escreve dez títulos e esboça três thumbnails. Se nenhum convence, a ideia ainda não está pronta.</span></div></div>
+    <div class="step"><div><b>Honra o clique nos primeiros segundos</b><span>A intro confirma o que o título prometeu e mostra o que está em jogo.</span></div></div>
+    <div class="step"><div><b>Lê poucos números, com calma</b><span>Olha para cliques e retenção, compara com a tua média e não entres em pânico nas primeiras horas. Volumes de vídeos antigos também se otimizam.</span></div></div>
+  </div>
+</section>
+
+
+<footer>Baseado no episódio do Open Residency com Paddy Galloway (setembro de 2026), nos capítulos e descrição do vídeo e nos frameworks que ele partilha publicamente. <a href="https://www.youtube.com/watch?v=Z2uoA3bhJT0">Ver no YouTube</a></footer>
+</div>

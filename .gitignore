@@ -1,0 +1,7 @@
+# Dados locais (biblioteca, transcrições, resumos gerados) ficam fora do repositório
+/data/
+__pycache__/
+*.pyc
+.claude/
+.DS_Store
+*.log
