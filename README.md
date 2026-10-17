@@ -51,6 +51,8 @@ Os seis primeiros resumos (Paddy Galloway, Sahar Yousef, David Friedberg, James 
 
 A pasta `docs/` é uma versão da biblioteca só de leitura, publicada em https://joaoxyxo.github.io/biblioteca-resumos/. Dá para pesquisar, filtrar e ler os resumos; os favoritos ficam guardados no browser de quem visita. Criar, apagar e regenerar resumos só funciona na app local.
 
+Quando partilhas o link (WhatsApp, iMessage, redes), aparece com imagem e descrição: os metadados estão em `static/index.html` e a imagem é `static/og-image.jpg` (1200×630). O WhatsApp guarda as pré-visualizações em cache; para ver uma mudança num link já partilhado, acrescenta `?v=2` ao fim.
+
 Para atualizar o site com os resumos novos:
 
 ```
