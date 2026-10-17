@@ -3,7 +3,7 @@
 
 Gera a pasta docs/ com a app, a lista de resumos prontos e cada resumo:
   docs/index.html            a app em modo de leitura
-  docs/static/               CSS, JS e ícone
+  docs/static/               CSS, JS, ícone e imagem da pré-visualização do link (og-image.jpg)
   docs/data/library.json     a lista de resumos (sem transcrições)
   docs/data/s/<id>.json      o conteúdo dos resumos em JSON
   docs/view/<id>.html        os resumos que já existem em HTML
@@ -68,7 +68,7 @@ def main():
     (OUT / "data" / "library.json").write_text(json.dumps(index, ensure_ascii=False), encoding="utf-8")
 
     for f in server.STATIC.iterdir():
-        if f.suffix in (".css", ".js", ".svg"):
+        if f.suffix in (".css", ".js", ".svg", ".jpg", ".png"):  # .jpg: imagem da pré-visualização do link
             shutil.copyfile(f, OUT / "static" / f.name)
 
     html = (server.STATIC / "index.html").read_text(encoding="utf-8")
